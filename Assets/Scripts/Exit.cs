@@ -17,15 +17,17 @@ public class Exit : MonoBehaviour
 
     }
 
-    public void StartOver()
+    public void ExitGame()
     {
-        StartCoroutine(StartOverCountDown());
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 
-
-    private IEnumerator StartOverCountDown()
+    public void RestartGame()
     {
-        yield return new WaitForSeconds(10f);
         SceneManager.LoadScene(0);
     }
+
 }
